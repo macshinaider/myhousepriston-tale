@@ -4,8 +4,7 @@ import { prisma } from "@/lib/prisma";
 
 export async function POST(req: Request) {
   try {
-    const data = await req.json();
-    console.log("🚀 ~ POST ~ data:", data);
+    const data = await req.json();    
     if (data) {
       const invoice = await data.payment.invoiceNumber;
       const statusid = await data.payment.status;
