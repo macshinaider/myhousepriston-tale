@@ -13,10 +13,11 @@ export async function POST(req: Request) {
           invoiceNumber: invoice,
         },
       });
+      console.log("🚀 ~ POST ~ user:", user);
 
-      if (!invoice) {
-        return (
-          Response.json({ message: "Essa Invoice Ja Foi Paga ou excluida" }),
+      if (user == null) {
+        return new Response(
+          JSON.stringify({ message: "Essa Invoice Ja Foi Paga ou excluida" }),
           {
             headers: {
               "Content-Type": "application/json",
@@ -72,6 +73,13 @@ export async function POST(req: Request) {
         });
         return Response.json(update);
       }
+    } else {
+      return new Response(JSON.stringify({ message: "Nenhum dado recebido" }), {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        status: 200,
+      });
     }
   } catch (error) {
     return new Response(JSON.stringify({ error: error }), { status: 200 });
