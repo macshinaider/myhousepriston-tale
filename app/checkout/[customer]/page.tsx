@@ -67,7 +67,12 @@ export default function Checkout({ params }: { params: { customer: string } }) {
     return (
       <div className="flex flex-col gap-4 bg-zinc-950 text-zinc-300 items-center justify-center p-4 h-screen w-screen overflow-hidden">
         <div className="flex items-center justify-center gap-3">
-          <VscLoading color="#0cd83ff9" size={45} className="icon-spin"/> <p>Carregando...</p>
+          <VscLoading
+            color="#0cd83ff9"
+            size={45}
+            className="icon-spin animate-spin"
+          />{" "}
+          <p>Carregando...</p>
         </div>
       </div>
     );
