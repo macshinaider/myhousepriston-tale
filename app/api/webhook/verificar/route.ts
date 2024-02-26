@@ -64,6 +64,6 @@ export async function POST(req: Request) {
       }
     }
   } catch (error) {
-    return Response.json({ error: error }), { status: 200 };
+    return new Response(JSON.stringify({ error: error }), { status: 200 });
   }
 }
