@@ -1,7 +1,6 @@
 import { CaptureQRcode } from "@/functions/asaas/captureQrcode";
 import { CreateCustomer } from "@/functions/asaas/createcustomer";
 import { CreatePayment } from "@/functions/asaas/createpayment";
-import { getDataDoDiaSeguinte } from "@/functions/newdate";
 import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 

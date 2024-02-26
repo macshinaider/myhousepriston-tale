@@ -1,10 +1,9 @@
-"use server"
+"use server";
 import { prisma } from "@/lib/prisma";
-
 
 export async function POST(req: Request) {
   try {
-    const data = await req.json();    
+    const data = await req.json();
     if (data) {
       const invoice = await data.payment.invoiceNumber;
       const statusid = await data.payment.status;
@@ -14,6 +13,18 @@ export async function POST(req: Request) {
           invoiceNumber: invoice,
         },
       });
+
+      if (!invoice) {
+        return (
+          Response.json({ message: "Essa Invoice Ja Foi Paga ou excluida" }),
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            status: 200,
+          }
+        );
+      }
 
       if (user && user.status === "PENDING") {
         const consulte = await prisma.credits.findUnique({
