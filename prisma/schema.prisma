@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model Credits {
+  ID      String @id @db.VarChar(50)
+  Credits Int
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model CreditsT {
+  ID      String @db.VarChar(50)
+  Credits Int
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model ShopItems {
+  ID            Int    @default(autoincrement()) @db.SmallInt
+  CategoryID    Int    @db.SmallInt
+  SubCategoryID Int    @db.SmallInt
+  ItemCode      String @db.VarChar(50)
+  ItemName      String @db.VarChar(50)
+  Price         Int    @db.SmallInt
+  ItemImage     String @db.VarChar(64)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model ShopItemsTime {
+  ID            Int    @default(autoincrement()) @db.SmallInt
+  CategoryID    Int    @db.SmallInt
+  SubCategoryID Int    @db.SmallInt
+  ItemCode      String @db.VarChar(50)
+  ItemName      String @db.VarChar(50)
+  Price         Int    @db.SmallInt
+  ItemImage     String @db.VarChar(64)
+
+  @@ignore
+}
+
+model Pedidos {
+  id            Int      @default(autoincrement()) @db.SmallInt
+  customer      String   @unique
+  username      String?   @db.VarChar(50) 
+  name          String   @db.VarChar(50)
+  billingType   String?
+  value         String?
+  pago          Boolean? @default(false)
+  invoiceNumber String?  @unique
+  dueDate       String?
+  status        String?
+  payload       String?
+  encodedImage  Bytes?
+}
