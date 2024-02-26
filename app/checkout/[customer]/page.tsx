@@ -14,7 +14,7 @@ export default function Checkout({ params }: { params: { customer: string } }) {
   const [QR, setQrcode] = useState("");
   const [payload, setPayload] = useState("");
   const [copied, setCopied] = useState(false);
-  const [carregando, setCarregando] = useState(true);
+  const [carregando, setCarregando] = useState<boolean>(true);
 
   const dados = params.customer;
 
@@ -39,15 +39,16 @@ export default function Checkout({ params }: { params: { customer: string } }) {
             setQrcode(dadosQR);
             setPayload(payload1);
             console.log(QR);
+            setTimeout(() => {
+              setCarregando(false);
+            }, 2000);
           }
         }
       }
     };
 
-    
-    const intervalId = setInterval(fetchPedido, 10000); // 
+    const intervalId = setInterval(fetchPedido, 10000); //
 
-    
     return () => clearInterval(intervalId);
   }, [QR]);
 
@@ -62,12 +63,11 @@ export default function Checkout({ params }: { params: { customer: string } }) {
     );
   }
 
-  if(carregando) {
+  if (carregando) {
     return (
       <div className="flex flex-col gap-4 bg-zinc-950 text-zinc-300 items-center justify-center p-4 h-screen w-screen overflow-hidden">
         <div className="flex items-center justify-center gap-3">
-          <FaCircleCheck color="#0cd83ff9" size={45} />{" "}
-          <p>Carregando...</p>
+          <FaCircleCheck color="#0cd83ff9" size={45} /> <p>Carregando...</p>
         </div>
       </div>
     );
