@@ -32,6 +32,7 @@ export function Cadastro() {
 
     if (res) {
       const invoice = await res.data.invoice;
+      console.log("🚀 ~ InPay ~ invoice:", invoice)
 
       routes.push(`/checkout/${invoice}`);
     }
