@@ -21,9 +21,9 @@ export default function Checkout({ params }: { params: { customer: string } }) {
     const fetchPedido = async () => {
       const pedido = await api.get(`/pedidos?customer=${dados}`);
       if (pedido) {
-        const t = pedido.data.dados.name
-        const a = pedido.data.dados.value
-        const z = pedido.data.dados.status
+        const t = pedido.data.dados.name;
+        const a = pedido.data.dados.value;
+        const z = pedido.data.dados.status;
         setName(t);
         setValue(a);
         setStatus(z);
@@ -37,13 +37,17 @@ export default function Checkout({ params }: { params: { customer: string } }) {
             const payload1 = await qrcode.data.payload;
             setQrcode(dadosQR);
             setPayload(payload1);
-            console.log(QR)
+            console.log(QR);
           }
         }
       }
     };
 
-    fetchPedido();
+    
+    const intervalId = setInterval(fetchPedido, 10000); // 
+
+    
+    return () => clearInterval(intervalId);
   }, [QR]);
 
   if (status === "RECEIVED") {
@@ -85,7 +89,9 @@ export default function Checkout({ params }: { params: { customer: string } }) {
               <button
                 onClick={onCopy}
                 style={{ wordWrap: "break-word", whiteSpace: "normal" }}
-              >{payload}</button>
+              >
+                {payload}
+              </button>
             </CopyToClipboard>
             {copied && (
               <span className="flex text-center items-center justify-center">
