@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { FaCircleCheck } from "react-icons/fa6";
-
+import { VscLoading } from "react-icons/vsc";
 export default function Checkout({ params }: { params: { customer: string } }) {
   const [name, setName] = useState("");
   const [value, setValue] = useState("");
@@ -67,7 +67,7 @@ export default function Checkout({ params }: { params: { customer: string } }) {
     return (
       <div className="flex flex-col gap-4 bg-zinc-950 text-zinc-300 items-center justify-center p-4 h-screen w-screen overflow-hidden">
         <div className="flex items-center justify-center gap-3">
-          <FaCircleCheck color="#0cd83ff9" size={45} /> <p>Carregando...</p>
+          <VscLoading color="#0cd83ff9" size={45} className="icon-spin"/> <p>Carregando...</p>
         </div>
       </div>
     );
