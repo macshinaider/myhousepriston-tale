@@ -19,10 +19,8 @@ export function Cadastro() {
 
   const routes = useRouter();
 
-
-  
   async function InPay(data: any) {
-    toast.success('Carregando Aguarde!')
+    toast.success("Carregando Aguarde!");
     const dados = {
       id: data.id,
       name: data.name,
@@ -34,7 +32,7 @@ export function Cadastro() {
 
     if (res) {
       const invoice = await res.data.invoice;
-      console.log("🚀 ~ InPay ~ invoice:", invoice)
+      console.log("🚀 ~ InPay ~ invoice:", invoice);
 
       routes.push(`/checkout/${invoice}`);
     }
@@ -53,6 +51,8 @@ export function Cadastro() {
             className="border border-zinc-600 shadow-sm rounded h-10 px-3 bg-zinc-800 text-white"
             {...register("id", { required: true })}
           />
+          {/* @ts-ignore */}
+					{errors.id && <span>{errors.id.message}</span>}
         </div>
         <div className="flex flex-col gap-1">
           <label htmlFor="cpfcnpj">CPF ou CNPJ</label>
@@ -61,6 +61,8 @@ export function Cadastro() {
             className="border border-zinc-600 shadow-sm rounded h-10 px-3 bg-zinc-800 text-white"
             {...register("cpfcnpj", { required: true })}
           />
+          {/* @ts-ignore */}
+					{errors.cpfcnpj && <span>{errors.cpfcnpj.message}</span>}
         </div>
         <div className="flex flex-col gap-1">
           <label htmlFor="name">Qual Seu Nome?</label>
@@ -69,6 +71,8 @@ export function Cadastro() {
             className="border border-zinc-600 shadow-sm rounded h-10 px-3 bg-zinc-800 text-white"
             {...register("name", { required: true })}
           />
+          {/* @ts-ignore */}
+					{errors.name && <span>{errors.name.message}</span>}
         </div>
         <div className="flex flex-col gap-1">
           <label htmlFor="coins">Valor em Reais</label>
@@ -77,6 +81,8 @@ export function Cadastro() {
             className="border border-zinc-600 shadow-sm rounded h-10 px-3 bg-zinc-800 text-white"
             {...register("coins", { required: true })}
           />
+          {/* @ts-ignore */}
+					{errors.coins && <span>{errors.coins.message}</span>}
         </div>
         <p className="flex items-center justify-center">Cada Coins vale 3x</p>
         <div className="flex bg-emerald-600 text-center h-10 items-center justify-center rounded cursor-pointer">

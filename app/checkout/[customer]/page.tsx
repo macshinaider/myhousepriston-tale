@@ -53,6 +53,8 @@ export default function Checkout({ params }: { params: { customer: string } }) {
   }, [QR]);
 
   if (status === "RECEIVED") {
+    
+
     return (
       <div className="flex flex-col gap-4 bg-zinc-950 text-zinc-300 items-center justify-center p-4 h-screen w-screen overflow-hidden">
         <div className="flex items-center justify-center gap-3">

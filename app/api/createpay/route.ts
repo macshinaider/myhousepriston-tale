@@ -42,18 +42,7 @@ export async function POST(req: NextRequest) {
             };
             const qrcode = await CaptureQRcode(dadosupdate);
 
-            return new NextResponse(
-              JSON.stringify({
-                success: true,
-                invoice: createpay.invoiceNumber,
-              }),
-              {
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                status: 200,
-              }
-            );
+            return new NextResponse(JSON.stringify({success: true, invoice: createpay.invoiceNumber}),{headers: {"Content-Type": "application/json"}, status: 200});
           }
         }
       }
@@ -66,3 +55,6 @@ export async function POST(req: NextRequest) {
     });
   }
 }
+
+
+

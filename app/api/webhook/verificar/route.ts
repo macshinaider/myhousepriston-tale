@@ -55,12 +55,14 @@ export async function POST(req: Request) {
 
           return Response.json(create);
         }
+
+        const coinsadd = Number(coins) + Number(consulte.Credits);
         const update = await prisma.credits.update({
           where: {
             ID: user.username!,
           },
           data: {
-            Credits: coins,
+            Credits: coinsadd,
           },
         });
         const updatestatus = await prisma.pedidos.update({
