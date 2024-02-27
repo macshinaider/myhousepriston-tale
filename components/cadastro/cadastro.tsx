@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { createUserFormSchema } from "./createUserFormSchema";
 import api from "@/lib/api";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 type CreateUserFormData = z.infer<typeof createUserFormSchema>;
 export function Cadastro() {
@@ -21,6 +22,7 @@ export function Cadastro() {
 
   
   async function InPay(data: any) {
+    toast.success('Carregando Aguarde!')
     const dados = {
       id: data.id,
       name: data.name,
