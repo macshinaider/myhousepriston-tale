@@ -6,7 +6,7 @@ console.log("🚀 ~ token:", token)
 
 
 export const asaas = axios.create({
-    baseURL: 'https://sandbox.asaas.com/api',
+    baseURL: 'https://asaas.com/api',
     headers:{
         Accept: 'application/json',
         'Content-Type': 'application/json',
